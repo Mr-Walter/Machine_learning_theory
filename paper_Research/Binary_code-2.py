@@ -70,8 +70,8 @@ if __name__=='__main__':
     x=tf.placeholder(tf.float32,(None,img_Pixels_h,img_Pixels_w,img_Pixels_c))
     y=tf.placeholder(tf.int64,(None,))
 
-    # net=Net(x,trainable=False,reuse=True)
-    net=Net(x)
+    net=Net(x,trainable=False,reuse=tf.AUTO_REUSE)
+    # net=Net(x)
     feature,_=net.forward_Net()
 
     # 连接一个隐藏层作为特征编码

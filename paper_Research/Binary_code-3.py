@@ -87,6 +87,8 @@ if __name__=='__main__':
                               name='fc2')  # [n,4096]
         net = tf.layers.dense(net, 48, activation=tf.nn.sigmoid,
                               name='fc3')  # [n,48]  # Binary code layer
+        net=tf.round(net) ######
+        
         pred=tf.layers.dense(net,num_classes,activation=tf.nn.softmax,name='output2')
 
     if train==0:

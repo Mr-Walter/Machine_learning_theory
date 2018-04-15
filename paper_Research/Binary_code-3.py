@@ -81,13 +81,13 @@ if __name__=='__main__':
         '''
     # Binary code
     if train==0 or train==-1:
-        feature, _ = forward_Net(x,False,tf.AUTO_REUSE)
+        feature, _ = forward_Net(x,False,tf.AUTO_REUSE) # 前几次训练trainable设为False，后面微调参数时可以设置为True
         # 连接一个隐藏层作为特征编码
         net = tf.layers.dense(feature, 4096, activation=tf.nn.relu,
                               name='fc2')  # [n,4096]
         net = tf.layers.dense(net, 48, activation=tf.nn.sigmoid,
                               name='fc3')  # [n,48]  # Binary code layer
-        net=tf.round(net) ######
+        # net=tf.round(net) # 第一次训练不加，第二次加上
         
         pred=tf.layers.dense(net,num_classes,activation=tf.nn.softmax,name='output2')
 

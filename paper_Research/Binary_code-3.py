@@ -195,16 +195,11 @@ if __name__=='__main__':
             # label相同编码是否一致
             labels=labels.astype(np.int32)
             error = labels[:-1] - labels[1:]
-            er=(error == 0).astype(np.int32)
+            er=(error == 0)
             feat_Decimal=np.asarray(feat_Decimal, np.int64)
-
-            print(np.mean(((feat_Decimal[:-1][er]-feat_Decimal[1:][er])==0).astype(np.int32)))
+            print(np.mean(((feat_Decimal[:-1][er]-feat_Decimal[1:][er])==0).astype(np.int32))) # 0.8627
 
             # 编码相同lable是否相同
             error=feat_Decimal[:-1]-feat_Decimal[1:]
-            er = (error == 0).astype(np.int32)
-            print(np.mean(((labels[:-1][er] - labels[1:][er]) == 0).astype(np.int32)))
-
-
-
-
+            er = (error == 0)
+            print(np.mean(((labels[:-1][er] - labels[1:][er]) == 0).astype(np.int32))) # 0.9959
